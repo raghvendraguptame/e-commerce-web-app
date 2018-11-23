@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+
+
+<script language="JavaScript" type="text/javascript"
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+  </script>
+
+<script>
+	    $(document).ready(function(){
+	        console.log("------1-----");
+	        $("#plusQuantity").click(function(){
+              
+	            var obj = new XMLHttpRequest();
+	          
+	            obj.open("POST","http://localhost:8080/abc",true);
+	          
+	            obj.send();
+	          
+
+	            obj.onreadystatechange=function(){
+	          
+	            if(obj.readyState==3 && obj.status==200)
+		            {
+	            	var quantity = parseFloat(document.getElementById("quantity").value);
+	          
+	                document.getElementById("quantity").value=quantity+1;
+		            }
+	                
+	            }
+
+	        });
+
+	        $("#minusQuantity").click(function(){
+                console.log("------2-----");
+	            var obj = new XMLHttpRequest();
+	            console.log("------3-----");
+	            obj.open("GET","http://localhost:8080/abc",true);
+	            console.log("------4-----");
+	            obj.send();
+	            console.log("------44-----");
+
+	            obj.onreadystatechange=function(){
+	            console.log("------5-----");
+	            if(obj.readyState==3 && obj.status==200)
+		            {
+	            	var quantity = parseFloat(document.getElementById("quantity").value);
+	                console.log("------6-----");
+	                document.getElementById("quantity").value=quantity-1;
+		            }
+	                
+	            }
+
+	        });
+
+	    });
+	</script>
+	
+	<style>
+    #quantity{
+    width:20px;
+    }
+</style
+
+</head>
+<body>
+<h2>List of All Products in cart</h2>
+<input id="minusQuantity" type="submit" name="minusButton" value="-"/><input type="text" id="quantity" name="quantity" value="1"/><input id="plusQuantity" type="submit" name="plusButton" value="+"/>
+				
+
+</body>
+</html>
